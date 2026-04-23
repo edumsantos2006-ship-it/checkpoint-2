@@ -1,4 +1,25 @@
+import json
+
+
+
 lista_tarefas = []
+
+def salvar_dados():
+    with open("dados.json", "w") as arquivo:
+        json.dump(lista_tarefas, arquivo, indent=4)
+
+
+def carregar_dados():
+    global lista_tarefas
+    try:
+        with open("dados.json", "r") as arquivo:
+            lista_tarefas = json.load(arquivo,)
+    except FileNotFoundError:
+        print("erro: lista não encontrada!!")
+        lista_tarefas = []
+        salvar_dados()
+
+    
 
 
 def adicionar_tarefas(descricao):
@@ -13,14 +34,13 @@ def adicionar_tarefas(descricao):
 
 def listar_tarefas():
     for indice, tarefa in enumerate(lista_tarefas):
-        status = '[x]' if tarefa['concluido'] else '[]'
+        status = "✔" if tarefa["concluida"] else "❌"
         print(f"{indice}. {tarefa['descricao']} [{status}]")
 
 
 def concluir_tarefa(indice):
     try:
         lista_tarefas[indice]["concluida"] = True
-
     except IndexError:
         print("erro")
 
