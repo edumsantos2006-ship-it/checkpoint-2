@@ -1,8 +1,7 @@
 import json
 
-
-
 lista_tarefas = []
+
 
 def salvar_dados():
     with open("dados.json", "w") as arquivo:
@@ -18,8 +17,6 @@ def carregar_dados():
         print("erro: lista não encontrada!!")
         lista_tarefas = []
         salvar_dados()
-
-    
 
 
 def adicionar_tarefas(descricao):
@@ -44,8 +41,7 @@ def concluir_tarefa(indice):
     except IndexError:
         print("erro")
 
-     
-
+        
 print(adicionar_tarefas)
 print(listar_tarefas)
 print(concluir_tarefa)
